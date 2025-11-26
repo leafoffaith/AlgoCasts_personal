@@ -7,8 +7,26 @@
 // forms the first ten entries of the fibonacci series.
 // Example:
 //   fib(4) === 3
+function memoize(fn) {
+    const cache = {};
+    return function (...args) {
+        //key is created
+        if (cache[args]) {
+            return cache[args];
+        }
 
-function fib(n, curr = [0, 1], counter = 2) {
+        const result = fn.apply(this, args);
+        //                      ^^^^  ^^^^
+        //                       |     |
+        //                       |     +-- Pass collected arguments
+        //                       +-------- Preserve original 'this'
+        cache[args] = result;
+
+        return result;
+    };
+}
+
+function slowFib(n) {
     //0 -> 1 -> 1(0+1) -> 2(1+1)
     //intial approach recursive solution
     //Course asked to produce iterative solution, 
@@ -35,7 +53,9 @@ function fib(n, curr = [0, 1], counter = 2) {
         return n
     }
 
+    //this fib call references the memoized version
     return fib(n - 1) + fib(n - 2)
 }
+const fib = memoize(slowFib)
 
 module.exports = fib;
