@@ -9,13 +9,23 @@
 //     q.remove(); // returns 1;
 
 class Queue {
-    constructor(node, next) {
-        this.node = node;
-        this.next = next
+    //constructor automaticalled on new instance creation
+    constructor() {
+        //initialize storage for queue elements
+        this.data = [];
+    }
+
+    add(record) {
+        this.data = [record, ...this.data];
+        //can also unshift here. But irrelevant for very
+        //small array
+    }
+
+    remove() {
+        return this.data.pop();
     }
 }
 
-//add method to the prototype
-Queue.prototype.add =
 
-    module.exports = Queue;
+
+module.exports = Queue;
