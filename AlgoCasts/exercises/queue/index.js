@@ -8,6 +8,14 @@
 //     q.add(1);
 //     q.remove(); // returns 1;
 
-class Queue {}
+class Queue {
+    constructor(node, next) {
+        this.node = node;
+        this.next = next
+    }
+}
 
-module.exports = Queue;
+//add method to the prototype
+Queue.prototype.add =
+
+    module.exports = Queue;
