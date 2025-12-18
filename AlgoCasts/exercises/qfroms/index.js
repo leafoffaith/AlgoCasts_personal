@@ -19,7 +19,7 @@ class Queue {
     constructor() {
         this.stackOne = new Stack();
         this.stackTwo = new Stack();
-    }
+    }.
 
     add(record) {
 
