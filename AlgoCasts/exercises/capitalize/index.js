@@ -23,6 +23,7 @@ function capitalize(str) {
         // console.log(tmpstr, "tmpstr")
         deconstr[entry] = tmpstr.join('')
     }
+    
     return deconstr.join(' ')
 }
 
