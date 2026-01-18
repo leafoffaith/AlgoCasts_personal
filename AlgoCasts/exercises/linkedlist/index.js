@@ -117,22 +117,9 @@ class LinkedList {
 	}
 
 
-	// test('inserts a new node with data at the 0 index when the list has elements', () => {
-	//     const l = new List();
-	//     l.insertLast('a');
-	//     l.insertLast('b');
-	//     l.insertLast('c');
-	//     l.insertAt('hi', 0);
-	//     expect(l.getAt(0).data).toEqual('hi');
-	//     expect(l.getAt(1).data).toEqual('a');
-	//     expect(l.getAt(2).data).toEqual('b');
-	//     expect(l.getAt(3).data).toEqual('c');
-	//   });
-
 	insertAt(data, idx) {
 		if(idx === 0) {
 			// console.log(this.getAt(0), this.getAt(1), this.getAt(2), this.getAt(3))
-
 			if(this.head === null) this.head = new Node(data)
 			else {
 				// console.log(this.head, "current head")
@@ -142,14 +129,31 @@ class LinkedList {
 			return
 		}
 
-		if(idx > this.size() - 1) return null;
-		
-		console.log(this.getAt(0), this.getAt(1), this.getAt(2), this.getAt(3))
+		if(idx == this.size()) {
+			this.insertLast(data) 
+			return
+		}
 
-		let prev = this.getAt(idx);
-		let curr = new Node(data)
-		curr.next = this.getAt(idx + 1) ?  this.getAt(idx + 1) :  null
-		prev.next = curr
+		if(idx > this.size()) {
+			this.insertLast(data)
+			return
+		}
+		
+		// console.log(idx, "idx")
+		// console.log(this.getAt(2), "curr 2")
+
+		let prev = this.getAt(idx - 1);
+		let newNode = new Node(data, this.getAt(idx))
+
+		prev.next = newNode
+		
+
+
+		// // console.log(newNode.next.data)
+		// prev.next = newNode
+
+		// console.log(this.getAt(0), this.getAt(1), this.getAt(2), this.getAt(3))
+
 	}
 }
 
