@@ -272,7 +272,7 @@ describe('InsertAt', () => {
   });
 });
 
-describe.skip('ForEach', () => {
+describe('ForEach', () => {
   test('applies a transform to each node', () => {
     const l = new List();
 
@@ -282,7 +282,9 @@ describe.skip('ForEach', () => {
     l.insertLast(4);
 
     l.forEach(node => {
+      // console.log(node.data)
       node.data += 10;
+      // console.log(node.data)
     });
 
     expect(l.getAt(0).data).toEqual(11);
@@ -292,7 +294,7 @@ describe.skip('ForEach', () => {
   });
 });
 
-describe.skip('for...of loops', () => {
+describe('for...of loops', () => {
   test('works with the linked list', () => {
     const l = new List();
 

@@ -18,15 +18,18 @@ class LinkedList {
 	insertFirst(data) {
 		if(!this.head) this.head = new Node(data)
 		else {
-			let newNode = new Node(data);
-			let prev = this.head;
-			this.head = newNode;
-			this.head.next = prev;
+			// let newNode = new Node(data);
+			// let prev = this.head;
+			// this.head = newNode;
+			// this.head.next = prev;
+
+			this.head = new Node(data, this.head);
 		}
 	}
 
 	size() {
 		//return size by iterating?
+		//no head pointless
 		if(!this.head) return 0
 		let size = 0;
 		let curr = this.head;
@@ -44,7 +47,7 @@ class LinkedList {
 	}
 
 	getLast() {
-		curr = this.head
+		let curr = this.head
 		if(this.size() == 0) return null;
 		if(!curr.next) return curr
 		while(curr.next != null) {
@@ -113,18 +116,16 @@ class LinkedList {
 		if(num > this.size()) return null;
 
 		let prev = this.getAt(num - 1);
-		prev.next = this.getAt(num + 1) ? this.getAt(num + 1) : null;
+		// prev.next = this.getAt(num + 1) ? this.getAt(num + 1) : null;
+		prev.next = prev.next.next
 	}
 
 
 	insertAt(data, idx) {
 		if(idx === 0) {
-			// console.log(this.getAt(0), this.getAt(1), this.getAt(2), this.getAt(3))
 			if(this.head === null) this.head = new Node(data)
 			else {
-				// console.log(this.head, "current head")
 				this.insertFirst(data)
-				// console.log(this.head, data, "current head after insertion")
 			}
 			return
 		}
@@ -138,23 +139,38 @@ class LinkedList {
 			this.insertLast(data)
 			return
 		}
-		
-		// console.log(idx, "idx")
-		// console.log(this.getAt(2), "curr 2")
+	
 
 		let prev = this.getAt(idx - 1);
 		let newNode = new Node(data, this.getAt(idx))
 
 		prev.next = newNode
-		
-
-
-		// // console.log(newNode.next.data)
-		// prev.next = newNode
-
-		// console.log(this.getAt(0), this.getAt(1), this.getAt(2), this.getAt(3))
 
 	}
+
+	forEach(func, counter){
+		// console.log(this.head)
+		if(!this.head) return null;
+		if(!func) return null;
+
+		// console.log(func)
+
+		curr = this.head
+		// console.log(this.size())
+		while(curr != null) {
+			func(curr);
+			// console.log(curr)
+			curr = curr.next
+		}
+	}
+
+	*[Symbol.iterator]() {
+        let current = this.head;
+        while (current) {
+            yield current;
+            current = current.next;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
