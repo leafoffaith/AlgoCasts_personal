@@ -11,6 +11,29 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+function fromLast(list, n) {
+	//n = 0 = last element
+	//reverse indexed, essentially. 
+	//n < size()
+
+	let fast = list.head;
+	let slow = list.head;
+
+	let counter = 0
+
+	while(fast != null) {
+		fast = fast.next;
+		counter++;
+	}
+
+	let idx = 0;
+	while(idx < counter - n - 1){
+		slow = slow.next
+		idx++
+	}
+
+	return slow;
+
+}
 
 module.exports = fromLast;
