@@ -48,7 +48,15 @@ class Tree {
 	}
 
 	traverseDF(fn){
-
+		let arr = [];
+		arr.push(this.root)
+		while(arr.length > 0){
+			let first = arr.shift();
+			if(first.children && first.children.length > 0) {
+				arr.unshift(...first.children); 
+			}
+			fn(first);
+		}
 	}
 }
 
